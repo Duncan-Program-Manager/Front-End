@@ -1,23 +1,44 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import Login from "../views/Login-Page.vue";
+import Register from "../views/Register-Page.vue";
+import HomePage from "../views/Home-Page.vue";
+import ForgotPage from "../views/Forgot-Page.vue";
+import UploadPage from "../views/Upload-Page.vue";
+import MarketPage from "../views/MarketPlace-Page.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "Login",
+    component: Login,
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/register",
+    name: "Register",
+    component: Register,
+  },
+  {
+    path: "/forgot",
+    name: "ForgotPage",
+    component: ForgotPage,
+  },
+  {
+    path: "/home",
+    name: "HomePage",
+    component: HomePage,
+  },
+  {
+    path: "/upload",
+    name: "UploadPage",
+    component: UploadPage,
+  },
+  {
+    path: "/market",
+    name: "MarketPage",
+    component: MarketPage,
   },
 ];
 
