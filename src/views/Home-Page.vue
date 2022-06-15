@@ -127,9 +127,9 @@ export default {
     SideBar,
   },
   methods: {
-    selectTemplate(template) {
-      template;
-    },
+    // selectTemplate(template) {
+    //   template;
+    // },
   },
 };
 </script>
