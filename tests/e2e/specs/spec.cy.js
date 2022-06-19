@@ -78,3 +78,39 @@ describe("Test correct loading of programs", () => {
     ).should("contain", "Winrar,");
   });
 });
+
+describe("test register page errors", () => {
+  it("go to register page", () => {
+    cy.visit("/");
+    cy.get('div[style="padding: 0px; margin-top: 0%;"] > a').click();
+    cy.url().should("eq", "http://localhost:8080/register");
+  });
+  it("not filling everything in", () => {
+    cy.get(".v-btn").click();
+    cy.get(".v-alert__content").should(
+      "contain",
+      "You didnt fill everything in!"
+    );
+  });
+  it("non equal email", () => {
+    cy.get("#input-14").type("username");
+    cy.get("#input-15").type("email");
+    cy.get("#input-16").type("email different");
+    cy.get("#input-17").type("password");
+    cy.get("#input-18").type("password");
+    cy.get(".v-btn").click();
+    cy.get(".v-alert__content").should("contain", "emails are not the same!");
+  });
+  it("non equal password", () => {
+    cy.get("#input-14").clear().type("username");
+    cy.get("#input-15").clear().type("email");
+    cy.get("#input-16").clear().type("email");
+    cy.get("#input-17").clear().type("password");
+    cy.get("#input-18").clear().type("password different");
+    cy.get(".v-btn").click();
+    cy.get(".v-alert__content").should(
+      "contain",
+      "passwords are not the same!"
+    );
+  });
+});
