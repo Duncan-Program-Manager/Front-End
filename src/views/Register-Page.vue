@@ -175,6 +175,7 @@ export default {
       this.$router.push("/");
     },
     Register() {
+      this.error = null;
       if (
         this.RegisterInfo.username == null ||
         this.RegisterInfo.email == null ||
@@ -195,7 +196,7 @@ export default {
       }
       let comp = this;
       axios.defaults.baseURL = "http://82.73.212.90:31235";
-      axios.defaults.timeout = 30000;
+      axios.defaults.timeout = 60000;
       axios({
         method: "post",
         url: "/auth/register",
@@ -206,16 +207,16 @@ export default {
         },
       })
         .catch(function (error) {
+          if (error.status == 409) {
+            alert("this email or username already exists");
+            return;
+          }
           if (error.response) {
             comp.error = "This combination is not found!";
           } else return;
         })
-        .then(function (reponse) {
-          if (reponse.status == 409) {
-            alert("this email or username already exists");
-            return;
-          }
-          this.toLogin();
+        .then(function () {
+          comp.toLogin();
         });
     },
   },

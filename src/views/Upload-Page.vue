@@ -150,7 +150,7 @@ export default {
   methods: {
     submit() {
       axios.defaults.baseURL = "http://82.73.212.90:31235";
-      axios.defaults.timeout = 30000;
+      axios.defaults.timeout = 120000;
       console.log("token here" + this.$store.getters.getJWT);
       let comp = this;
       axios({
